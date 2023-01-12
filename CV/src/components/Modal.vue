@@ -9,14 +9,16 @@
         name: "Modal",
         props: ['y'],
         mounted() {
-            this.$refs.modal.style.top = this.y + window.pageYOffset - 200 +  'px'
+            this.$refs.modal.style.top = this.y + window.pageYOffset - 400 +  'px'
         }
     }
 </script>
 
 <style scoped lang="scss">
     div {
-        height: 100px;
+        min-height: min-content;
+        /*height: 100px;*/
+        min-width: min-content;
         width: 40vw;
         position: absolute;
         z-index: 100;
