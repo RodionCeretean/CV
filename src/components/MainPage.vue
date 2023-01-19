@@ -1,6 +1,7 @@
 <template>
     <transition>
         <Modal
+                :data="clipboardData"
                 :y="linkClientY"
                 v-if="linkIsCopied">
         </Modal>
@@ -75,14 +76,16 @@
             {{tab}}<p>
             <span class="keys">phone</span>
             <span class="symbols">: </span>
-            <span class="text">'+37367142299'</span>
+            <span class="text clickable"
+                  @click="copyToClipboard('+37367142299', $event, 'Number')">'+37367142299'</span>
             <span class="commas">,</span>
         </p>
             <br>
             {{tab}}<p>
             <span class="keys">email</span>
             <span class="symbols">: </span>
-            <span class="text">'ceretean.r@gmail.com'</span>
+            <span class="text clickable"
+                  @click="copyToClipboard('ceretean.r@gmail.com', $event, 'Email')">'ceretean.r@gmail.com'</span>
             <span class="commas">,</span>
         </p>
             <br>
@@ -162,18 +165,22 @@
             {{tab}}<p>
             <span class="keys">github</span>
             <span class="symbols">: </span>
-            <span class="text" v-if="media >= 850">'https://github.com/RodionCeretean'</span>
+            <span class="text clickable"
+                  v-if="media >= 850"
+                  @click="copyToClipboard('https://github.com/RodionCeretean', $event, 'Link')">'https://github.com/RodionCeretean'</span>
             <span class="text link" v-else
-                  @click="copyToClipboard('https://github.com/RodionCeretean', $event)">link</span>
+                  @click="copyToClipboard('https://github.com/RodionCeretean', $event, 'Link')">link</span>
             <span class="commas">,</span>
         </p>
             <br>
             {{tab}}<p>
             <span class="keys">linkedIn</span>
             <span class="symbols">: </span>
-            <span class="text" v-if="media >= 850">'https://www.linkedin.com/in/rodion-ceretean/'</span>
+            <span class="text clickable"
+                  v-if="media >= 850"
+                  @click="copyToClipboard('https://www.linkedin.com/in/rodion-ceretean/', $event, 'Link')">'https://www.linkedin.com/in/rodion-ceretean/'</span>
             <span class="text link" v-else
-                  @click="copyToClipboard('https://www.linkedin.com/in/rodion-ceretean/', $event)">link</span>
+                  @click="copyToClipboard('https://www.linkedin.com/in/rodion-ceretean/', $event, 'Link')">link</span>
         </p>
             <br>
             <p>
@@ -199,6 +206,7 @@
         },
         data() {
             return {
+                clipboardData: '',
                 linkClientY: null,
                 linkIsCopied: false,
                 isLanguageArrayOpen: false,
@@ -214,7 +222,8 @@
             }
         },
         methods: {
-            copyToClipboard(url, event) {
+            copyToClipboard(url, event, data) {
+                this.clipboardData = data
                 this.linkClientY = event.clientY
                 navigator.clipboard.writeText(url)
                 this.linkIsCopied = true
@@ -390,6 +399,9 @@
 
             .link {
                 text-decoration: underline;
+                cursor: pointer;
+            }
+            .clickable {
                 cursor: pointer;
             }
 

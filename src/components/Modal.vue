@@ -1,16 +1,16 @@
 <template>
         <div ref="modal">
-            <p>Link is copied to Clipboard</p>
+            <p>{{ data }} is copied to Clipboard</p>
         </div>
 </template>
 
 <script>
     export default {
         name: "Modal",
-        props: ['y'],
+        props: ['y', 'data'],
         mounted() {
-            this.$refs.modal.style.top = this.y + window.pageYOffset - 400 +  'px'
-        }
+            this.$refs.modal.style.top = this.y + window.pageYOffset - 200 +  'px'
+        },
     }
 </script>
 
