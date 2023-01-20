@@ -275,10 +275,10 @@
                 return '\xa0\xa0\xa0\xa0'
             },
             linesNumber() {
-                if (this.totalHeight / 63.5 % 0) {
-                    return this.totalHeight / 63.5
+                if (this.totalHeight / 55.15 % 0) {
+                    return this.totalHeight / 55.15
                 } else {
-                    return Math.ceil(this.totalHeight / 63.5)
+                    return Math.ceil(this.totalHeight / 55.15)
                 }
             },
         }
@@ -286,6 +286,16 @@
 </script>
 
 <style scoped lang="scss">
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap');
+    @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('../assets/fonts/JetBrainsMono-Regular.eot');
+        src: url('../assets/fonts/JetBrainsMono-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2'),
+        url('../assets/fonts/JetBrainsMono-Regular.woff') format('woff'),
+        url('../assets/fonts/JetBrainsMono-Regular.ttf') format('truetype'),
+        url('../assets/fonts/JetBrainsMono-Regular.svg#JetBrainsMono-Regular') format('svg');
+    }
 
     .main {
         background-color: #2b2b2b;
@@ -298,32 +308,37 @@
             color: green;
             margin-left: 15px;
             margin-top: 5px;
-            font-family: monospace;
-            line-height: 1.975;
-            font-size: 2rem;
+            font-family: JetBrains Mono;
+            font-weight: lighter;
+            line-height: 2.295;
+            font-size: 1.5rem;
             min-width: content-box;
             width: 100%;
             overflow: hidden;
             position: relative;
             @media screen and (max-width: 1650px) {
-                font-size: 1.75rem;
-                line-height: 2.25;
+                font-size: 1.5rem;
+                line-height: 2.295;
             }
             @media screen and (max-width: 1450px) {
-                font-size: 1.5rem;
-                line-height: 2.625;
+                font-size: 1.25rem;
+                line-height: 2.76;
             }
             @media screen and (max-width: 1250px) {
-                font-size: 1.25rem;
-                line-height: 3.15;
+                font-size: 1rem;
+                line-height: 3.45;
             }
             @media screen and (max-width: 450px) {
-                font-size: 1rem;
-                line-height: 3.95;
+                font-size: 0.9rem;
+                line-height: 3.825;
             }
             @media screen and (max-width: 350px) {
-                font-size: 0.9rem;
-                line-height: 4.39;
+                font-size: 0.85rem;
+                line-height: 4.06;
+            }
+            @media screen and (max-width: 330px) {
+                font-size: 0.75rem;
+                line-height: 4.6;
             }
 
             &::selection {
@@ -345,7 +360,7 @@
 
             .line {
                 width: 100%;
-                height: 63.5px;
+                height: 55.15px;
             }
         }
 
@@ -417,21 +432,37 @@
 
     .lineNumberSpace {
         min-width: fit-content;
-        padding: 0 10px;
+        max-width: 10vw;
+        width: 7vw;
+        padding: 0 0 0 5px;
         display: flex;
         flex-direction: column;
         background-color: #313335;
-        width: 10%;
         height: content-box;
         line-height: 2;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         text-align: end;
+        border-right: 1px gray solid;
+        @media screen and (max-width: 1250px) {
+            font-size: 1rem;
+            line-height: 2.5;
+        }
+        @media screen and (max-width: 450px) {
+            font-size: 0.9rem;
+            line-height: 2.775;
+        }
+        @media screen and (max-width: 330px) {
+            font-size: 0.75rem;
+            line-height: 3.335;
+        }
 
         .numbers {
+            padding: 0 15px;
             margin-top: 15px;
             margin-right: 75%;
             color: #606366;
-            font-family: monospace;
+            font-family: JetBrains Mono;
+            font-weight: lighter;
             cursor: default;
             -webkit-user-select: none;
         }
